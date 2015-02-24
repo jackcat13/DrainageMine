@@ -32,12 +32,21 @@
             this.designPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pumpPictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.coTextBox = new System.Windows.Forms.TextBox();
+            this.chTextBox = new System.Windows.Forms.TextBox();
+            this.waterLevelTextBox = new System.Windows.Forms.TextBox();
             this.designPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pumpPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // designPanel
             // 
+            this.designPanel.Controls.Add(this.waterLevelTextBox);
+            this.designPanel.Controls.Add(this.chTextBox);
+            this.designPanel.Controls.Add(this.coTextBox);
+            this.designPanel.Controls.Add(this.pictureBox1);
             this.designPanel.Controls.Add(this.pumpPictureBox);
             this.designPanel.Location = new System.Drawing.Point(13, 13);
             this.designPanel.Name = "designPanel";
@@ -54,12 +63,46 @@
             // pumpPictureBox
             // 
             this.pumpPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pumpPictureBox.Image")));
-            this.pumpPictureBox.Location = new System.Drawing.Point(132, 354);
+            this.pumpPictureBox.Location = new System.Drawing.Point(240, 364);
             this.pumpPictureBox.Name = "pumpPictureBox";
-            this.pumpPictureBox.Size = new System.Drawing.Size(126, 61);
+            this.pumpPictureBox.Size = new System.Drawing.Size(126, 69);
             this.pumpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pumpPictureBox.TabIndex = 0;
             this.pumpPictureBox.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(240, 141);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(126, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // coTextBox
+            // 
+            this.coTextBox.Location = new System.Drawing.Point(400, 141);
+            this.coTextBox.Name = "coTextBox";
+            this.coTextBox.ReadOnly = true;
+            this.coTextBox.Size = new System.Drawing.Size(100, 20);
+            this.coTextBox.TabIndex = 2;
+            // 
+            // chTextBox
+            // 
+            this.chTextBox.Location = new System.Drawing.Point(400, 191);
+            this.chTextBox.Name = "chTextBox";
+            this.chTextBox.ReadOnly = true;
+            this.chTextBox.Size = new System.Drawing.Size(100, 20);
+            this.chTextBox.TabIndex = 3;
+            // 
+            // waterLevelTextBox
+            // 
+            this.waterLevelTextBox.Location = new System.Drawing.Point(400, 387);
+            this.waterLevelTextBox.Name = "waterLevelTextBox";
+            this.waterLevelTextBox.ReadOnly = true;
+            this.waterLevelTextBox.Size = new System.Drawing.Size(100, 20);
+            this.waterLevelTextBox.TabIndex = 4;
             // 
             // Form1
             // 
@@ -71,7 +114,9 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.designPanel.ResumeLayout(false);
+            this.designPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pumpPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -81,6 +126,10 @@
         private System.Windows.Forms.Panel designPanel;
         private System.Windows.Forms.PictureBox pumpPictureBox;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox waterLevelTextBox;
+        private System.Windows.Forms.TextBox chTextBox;
+        private System.Windows.Forms.TextBox coTextBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

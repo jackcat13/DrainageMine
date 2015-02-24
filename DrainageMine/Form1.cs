@@ -15,6 +15,11 @@ namespace DrainageMine
         public Form1()
         {
             InitializeComponent();
+
+            //Initialisation des valeurs
+            coTextBox.Text = "0";
+            chTextBox.Text = "0";
+            waterLevelTextBox.Text = "200";
         }
     }
 }
