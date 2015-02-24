@@ -20,6 +20,7 @@ namespace DrainageMine
             coTextBox.Text = "0";
             chTextBox.Text = "0";
             waterLevelTextBox.Text = "200";
+
         }
     }
 }
