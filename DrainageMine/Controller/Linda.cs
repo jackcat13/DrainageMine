@@ -16,5 +16,10 @@ namespace DrainageMine.Model
             dao = new DAO();
         }
 
+        public string lindaIn(){
+
+            return null;
+    }
+
     }
 }
