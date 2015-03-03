@@ -75,7 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MinageDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Model\Linda.cs" />
+    <Compile Include="Controller\Linda.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
