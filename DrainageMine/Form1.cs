@@ -12,22 +12,10 @@ namespace DrainageMine
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
-            MinageDataSet min = new MinageDataSet();
-            MinageDataSet.EspaceTupleRow row = min.EspaceTuple.NewEspaceTupleRow();
-            row.tuple = "test,1";
-            min.EspaceTuple.Rows.Add(row);
-            min.EspaceTuple.AcceptChanges();
-            //Initialisation des valeurs
-            coTextBox.Text = (string)min.EspaceTuple.Select()[0][0];
-            chTextBox.Text = "0";
-            waterLevelTextBox.Text = "test";
-
-            
-            
-
         }
 
         private void espaceTupleBindingNavigatorSaveItem_Click(object sender, EventArgs e)

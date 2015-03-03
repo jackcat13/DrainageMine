@@ -9,7 +9,7 @@ namespace DrainageMine.Model
     class Linda
     {
 
-        DAO dao;
+        private DAO dao;
 
         public Linda()
         {

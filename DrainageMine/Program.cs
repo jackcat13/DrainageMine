@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrainageMine.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -7,8 +8,11 @@ using System.Windows.Forms;
 
 namespace DrainageMine
 {
+
     static class Program
     {
+        private static Linda linda;
+
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
@@ -18,6 +22,10 @@ namespace DrainageMine
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            linda = new Linda();
+            
+
         }
     }
 }
