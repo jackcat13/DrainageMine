@@ -20,22 +20,9 @@ namespace DrainageMine
         {
             InitializeComponent();
             linda = new Linda();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
         }
 
-        private void espaceTupleBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.espaceTupleBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.minageDataSet);
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // TODO: cette ligne de code charge les données dans la table 'minageDataSet.EspaceTuple'. Vous pouvez la déplacer ou la supprimer selon vos besoins.
-            this.espaceTupleTableAdapter.Fill(this.minageDataSet.EspaceTuple);
-
-        }
 
         private void setSeuilButton_Click(object sender, EventArgs e)
         {
@@ -54,6 +41,23 @@ namespace DrainageMine
             Model.Tuple seuilCH4Haut = new Model.Tuple(tupleCH4);
             linda.lindaAdd("value_Seuil_CH4_Haut", seuilCH4Haut);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Closing(object sender, EventArgs e)
+        {
+            
+            if (MessageBox.Show("Text", "Title", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+
+        }
+
+
 
 
     }
