@@ -34,13 +34,22 @@ namespace DrainageMine
         {
 
             minDataSet.EspaceTuple.Select("tuple LIKE " + filter + "*")[0].Delete();
+            minDataSet.EspaceTuple.AcceptChanges();
         }
 
         public void updateTuple(string filter, string tuple)
         {
 
             System.Data.DataRow[] row = minDataSet.EspaceTuple.Select("tuple LIKE " + filter + "*");
-            row[0][0] = tuple;
+            if (row.Length != 0)
+            {
+                row[0][0] = tuple;
+            }
+            else
+            {
+                this.addTuple(tuple);
+            }
+            minDataSet.EspaceTuple.AcceptChanges();
         }
     }
 }
