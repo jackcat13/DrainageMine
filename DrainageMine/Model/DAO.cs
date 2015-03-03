@@ -26,8 +26,8 @@ namespace DrainageMine
 
         public string getTuple(string filter)
         {
-            if (minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + ",*'").Length != 0)
-                return (string)minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + ",*'")[0][0];
+            if (minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'").Length != 0)
+                return (string)minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'")[0][0];
             else
                 return "No tuple found";
         }
@@ -35,14 +35,14 @@ namespace DrainageMine
         public void deleteTuple(string filter)
         {
 
-            minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + ",*'")[0].Delete();
+            minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'")[0].Delete();
             minDataSet.EspaceTuple.AcceptChanges();
         }
 
         public void updateTuple(string filter, string tuple)
         {
 
-            System.Data.DataRow[] row = minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + ",*'");
+            System.Data.DataRow[] row = minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'");
             if (row.Length != 0)
             {
                 row[0][0] = tuple;
