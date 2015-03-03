@@ -40,19 +40,23 @@ namespace DrainageMine
         private void setSeuilButton_Click(object sender, EventArgs e)
         {
             List<string> tupleH2O = new List<string>();
+            tupleH2O.Add("value_Seuil_H2O_Haut");
             tupleH2O.Add(H2OSeuilHautTextBox.Text);
             Model.Tuple seuilH2OHaut = new Model.Tuple(tupleH2O);
-            linda.lindaAdd("value_Seuil_H2O_Haut", seuilH2OHaut);
+            linda.lindaAdd("value_Seuil_H2O_Haut*", seuilH2OHaut);
 
             List<string> tupleCO = new List<string>();
+            tupleCO.Add("value_Seuil_CO_Haut");
             tupleCO.Add(COSeuilHautTextBox.Text);
             Model.Tuple seuilCOHaut = new Model.Tuple(tupleCO);
-            linda.lindaAdd("value_Seuil_CO_Haut", seuilCOHaut);
+            linda.lindaAdd("value_Seuil_CO_Haut*", seuilCOHaut);
 
             List<string> tupleCH4 = new List<string>();
+            tupleCH4.Add("value_Seuil_CH4_Haut");
             tupleCH4.Add(CH4SeuilHautTextBox.Text);
             Model.Tuple seuilCH4Haut = new Model.Tuple(tupleCH4);
-            linda.lindaAdd("value_Seuil_CH4_Haut", seuilCH4Haut);
+            linda.lindaAdd("value_Seuil_CH4_Haut*", seuilCH4Haut);
+            
         }
 
     }

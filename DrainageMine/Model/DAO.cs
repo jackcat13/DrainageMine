@@ -10,24 +10,28 @@ namespace DrainageMine
     {
 
         private MinageDataSet minDataSet;
+        private MinageDataSetTableAdapters.EspaceTupleTableAdapter espaceTupleTableAdaptater;
 
         public DAO()
         {
             minDataSet = new MinageDataSet();
+            espaceTupleTableAdaptater = new MinageDataSetTableAdapters.EspaceTupleTableAdapter();
         }
 
         public void addTuple(string tuple){
-
+            
             MinageDataSet.EspaceTupleRow row = minDataSet.EspaceTuple.NewEspaceTupleRow();
             row.tuple = tuple;
             minDataSet.EspaceTuple.Rows.Add(row);
             minDataSet.EspaceTuple.AcceptChanges();
+            espaceTupleTableAdaptater.Update(minDataSet.EspaceTuple);
         }
 
         public string getTuple(string filter)
         {
-            if (minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'").Length != 0)
-                return (string)minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'")[0][0];
+            System.Data.DataRow[] row = minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'");
+            if (row.Length != 0 && row != null)
+                return (string)row[0][0];
             else
                 return "No tuple found";
         }
@@ -37,21 +41,23 @@ namespace DrainageMine
 
             minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'")[0].Delete();
             minDataSet.EspaceTuple.AcceptChanges();
+            espaceTupleTableAdaptater.Update(minDataSet.EspaceTuple);
         }
 
         public void updateTuple(string filter, string tuple)
         {
 
             System.Data.DataRow[] row = minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'");
-            if (row.Length != 0)
+            if (row.Length != 0 && row != null)
             {
                 row[0][0] = tuple;
+                minDataSet.EspaceTuple.AcceptChanges();
+                espaceTupleTableAdaptater.Update(minDataSet.EspaceTuple);
             }
             else
             {
                 this.addTuple(tuple);
             }
-            minDataSet.EspaceTuple.AcceptChanges();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace DrainageMine.Model
         {
 
             this.arguments = arguments[0];
-            for ( int i=1; i < arguments.Count-1; i++ ){
+            for ( int i=1; i < arguments.Count; i++ ){
                 this.arguments += ", " + arguments[i];
             }
         }
