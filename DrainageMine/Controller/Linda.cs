@@ -16,10 +16,16 @@ namespace DrainageMine.Model
             dao = new DAO();
         }
 
-        public void lindaOut()
+        public void lindaOut( Tuple tuple )
         {
-
+            dao.addTuple(tuple.Arguments);
         }
+
+        public void lindaAdd( string filter, Tuple tuple )
+        {
+            dao.updateTuple(filter, tuple.Arguments);
+        }
+
 
     }
 }
