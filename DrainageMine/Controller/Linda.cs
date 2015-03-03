@@ -27,10 +27,15 @@ namespace DrainageMine.Model
         }
 
 
-        public string lindaIn(){
+        public string lindaIn(string filter){
+            while (dao.getTuple(filter) == "No tuple found");
+            return dao.getTuple(filter);
+        }
 
-            return null;
-    }
+        public string lindaRead(string filter)
+        {
+            return dao.getTuple(filter);
+        }
 
     }
 }
