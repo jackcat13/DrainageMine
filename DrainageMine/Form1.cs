@@ -15,11 +15,16 @@ namespace DrainageMine
         public Form1()
         {
             InitializeComponent();
-
+            MinageDataSet min = new MinageDataSet();
+            MinageDataSet.EspaceTupleRow row = min.EspaceTuple.NewEspaceTupleRow();
+            row.tuple = "test,1";
+            min.EspaceTuple.Rows.Add(row);
+            min.EspaceTuple.AcceptChanges();
             //Initialisation des valeurs
-            coTextBox.Text = "0";
+            coTextBox.Text = (string)min.EspaceTuple.Select()[0][0];
             chTextBox.Text = "0";
             waterLevelTextBox.Text = "test";
+
             
             
 
