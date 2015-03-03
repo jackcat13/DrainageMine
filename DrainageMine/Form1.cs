@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrainageMine.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,12 @@ namespace DrainageMine
 
         public Form1()
         {
+
             InitializeComponent();
+            DAO dao = new DAO();
+            Console.Write(dao.getTuple("blablq"));
+           
+
         }
 
         private void espaceTupleBindingNavigatorSaveItem_Click(object sender, EventArgs e)
