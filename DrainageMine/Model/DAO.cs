@@ -10,6 +10,7 @@ using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
 using MongoDB.Driver.Linq;
 using DrainageMine.Model;
+using System.Windows.Forms;
 
 namespace DrainageMine
 {
@@ -44,8 +45,17 @@ namespace DrainageMine
 
         public DrainageMine.Model.Tuple getTuple(string filter)
         {
-            var tuple=collection.AsQueryable<DrainageMine.Model.Tuple>().Where(Tuple => Tuple.Arguments.Contains(filter)).First();
-            return tuple;
+            try
+            {
+                var tuple = collection.AsQueryable<DrainageMine.Model.Tuple>().Where(Tuple => Tuple.Arguments.Contains(filter)).First();
+                return tuple;
+
+            }
+            catch (InvalidOperationException e)
+            {
+                return null;
+            }
+
         }
 
         public void deleteTuple(DrainageMine.Model.Tuple tuple)
@@ -65,6 +75,7 @@ namespace DrainageMine
                 collection.Update(query, update);
             }
             else
+            
             {
                 this.addTuple(new DrainageMine.Model.Tuple(arguments));
             }

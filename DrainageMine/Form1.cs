@@ -30,19 +30,19 @@ namespace DrainageMine
             tupleH2O.Add("value_Seuil_H2O_Haut");
             tupleH2O.Add(H2OSeuilHautTextBox.Text);
             Model.Tuple seuilH2OHaut = new Model.Tuple(tupleH2O);
-            linda.lindaAdd("value_Seuil_H2O_Haut*", seuilH2OHaut);
+            linda.lindaOut(seuilH2OHaut);
 
             List<string> tupleCO = new List<string>();
             tupleCO.Add("value_Seuil_CO_Haut");
             tupleCO.Add(COSeuilHautTextBox.Text);
             Model.Tuple seuilCOHaut = new Model.Tuple(tupleCO);
-            linda.lindaAdd("value_Seuil_CO_Haut*", seuilCOHaut);
+            linda.lindaOut(seuilCOHaut);
 
             List<string> tupleCH4 = new List<string>();
             tupleCH4.Add("value_Seuil_CH4_Haut");
             tupleCH4.Add(CH4SeuilHautTextBox.Text);
             Model.Tuple seuilCH4Haut = new Model.Tuple(tupleCH4);
-            linda.lindaAdd("value_Seuil_CH4_Haut*", seuilCH4Haut);
+            linda.lindaOut(seuilCH4Haut);
             
         }
 
@@ -54,7 +54,7 @@ namespace DrainageMine
         private void Form1_Closing(object sender, EventArgs e)
         {
             
-            if (MessageBox.Show("Text", "Title", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Êtes-vous sûr de vouloir quitter ?", "Ne partez pas :-(", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Application.Exit();
             }

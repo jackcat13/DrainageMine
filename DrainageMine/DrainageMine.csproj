@@ -84,7 +84,6 @@
       <DependentUpon>MinageDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Controller\Linda.cs" />
-    <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Tuple.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
