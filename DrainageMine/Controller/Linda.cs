@@ -18,7 +18,7 @@ namespace DrainageMine.Model
 
         public void lindaOut( Tuple tuple )
         {
-            dao.addTuple(tuple.Arguments);
+            dao.addTuple(tuple);
         }
 
         public void lindaAdd( string filter, Tuple tuple )
@@ -27,16 +27,16 @@ namespace DrainageMine.Model
         }
 
 
-        public string lindaIn(string filter){
-            while (dao.getTuple(filter) == "No tuple found");
-            string tuple = dao.getTuple(filter);
-            dao.deleteTuple(filter);
+        public Tuple lindaIn(string filter){
+            while (dao.getTuple(filter) == null);
+            Tuple tuple = dao.getTuple(filter);
+            dao.deleteTuple(tuple);
             return tuple;
         }
 
-        public string lindaRead(string filter)
+        public Tuple lindaRead(string filter)
         {
-            while (dao.getTuple(filter) == "No tuple found");
+            while (dao.getTuple(filter) == null);
             return dao.getTuple(filter);
         }
 
