@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,22 +10,25 @@ namespace DrainageMine.Model
 
     class Tuple
     {
+        private string tuple;
 
-        private string arguments;
 
-        public string Arguments
-        {
-            get { return arguments; }
-            set { arguments = value; }
-        }
+        public ObjectId Id { get; set; }
+
+        public string Arguments { get; set;}
 
         public Tuple( List<string> arguments )
         {
 
-            this.arguments = arguments[0];
+            this.Arguments = arguments[0];
             for ( int i=1; i < arguments.Count; i++ ){
-                this.arguments += ", " + arguments[i];
+                this.Arguments += ", " + arguments[i];
             }
+        }
+
+        public Tuple(string tuple)
+        {
+            this.tuple = tuple;
         }
 
     }

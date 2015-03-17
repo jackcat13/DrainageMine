@@ -4,6 +4,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+using MongoDB.Driver.GridFS;
+using MongoDB.Driver.Linq;
+using DrainageMine.Model;
 
 namespace DrainageMine
 {
@@ -12,6 +18,9 @@ namespace DrainageMine
 
         private MinageDataSet minDataSet;
         SqlConnection conn;
+        string connectionString = "mongodb://localhost";
+        MongoCollection collection;
+        
         private MinageDataSetTableAdapters.EspaceTupleTableAdapter espaceTupleTableAdaptater;
 
         public DAO()
@@ -19,47 +28,45 @@ namespace DrainageMine
             SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\\Users\\Julien\\Source\\Repos\\DrainageMine\\DrainageMine\\Minage.mdf;Integrated Security=True;Connect Timeout=30");
             minDataSet = new MinageDataSet();
             espaceTupleTableAdaptater = new MinageDataSetTableAdapters.EspaceTupleTableAdapter();
+            MongoClient client = new MongoClient(connectionString);
+            MongoServer server = client.GetServer();
+            MongoDatabase database = server.GetDatabase("EspaceTuples");
+            collection = database.GetCollection<DrainageMine.Model.Tuple>("tuples");
+
         }
 
-        public void addTuple(string tuple){
+        public void addTuple(DrainageMine.Model.Tuple tuple){
+            collection.Insert(tuple);
+            var id = tuple.Id; // Insert will set the Id if necessary (as it was in this example)
 
-            MinageDataSet.EspaceTupleRow row = minDataSet.EspaceTuple.NewEspaceTupleRow();
-            row.tuple = tuple;
-            minDataSet.EspaceTuple.Rows.Add(row);
-            minDataSet.EspaceTuple.AcceptChanges();
-            espaceTupleTableAdaptater.Update(minDataSet.EspaceTuple);
+
         }
 
-        public string getTuple(string filter)
+        public DrainageMine.Model.Tuple getTuple(string filter)
         {
-            System.Data.DataRow[] row = minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'");
-            if (row.Length != 0 && row != null)
-                return (string)row[0][0];
-            else
-                return "No tuple found";
+            var tuple=collection.AsQueryable<DrainageMine.Model.Tuple>().Where(Tuple => Tuple.Arguments.Contains(filter)).First();
+            return tuple;
         }
 
-        public void deleteTuple(string filter)
+        public void deleteTuple(DrainageMine.Model.Tuple tuple)
         {
-
-            minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'")[0].Delete();
-            minDataSet.EspaceTuple.AcceptChanges();
-            espaceTupleTableAdaptater.Update(minDataSet.EspaceTuple);
+            var query = Query<DrainageMine.Model.Tuple>.EQ(e => e.Id, tuple.Id);
+            collection.Remove(query);
         }
 
-        public void updateTuple(string filter, string tuple)
+        public void updateTuple(string filter, string arguments)
         {
-
-            System.Data.DataRow[] row = minDataSet.EspaceTuple.Select("tuple LIKE '" + filter + "'");
-            if (row.Length != 0 && row != null)
+            var tupleAModifier = getTuple(filter);
+ 
+            if (tupleAModifier != null)
             {
-                row[0][0] = tuple;
-                minDataSet.EspaceTuple.AcceptChanges();
-                espaceTupleTableAdaptater.Update(minDataSet.EspaceTuple);
+                var query = Query<DrainageMine.Model.Tuple>.EQ(e => e.Id, tupleAModifier.Id);
+                var update = Update<DrainageMine.Model.Tuple>.Set(e => e.Arguments, arguments); // update modifiers
+                collection.Update(query, update);
             }
             else
             {
-                this.addTuple(tuple);
+                this.addTuple(new DrainageMine.Model.Tuple(arguments));
             }
         }
     }
