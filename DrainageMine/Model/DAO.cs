@@ -17,18 +17,13 @@ namespace DrainageMine
     class DAO
     {
 
-        private MinageDataSet minDataSet;
         SqlConnection conn;
         string connectionString = "mongodb://localhost";
         MongoCollection collection;
         
-        private MinageDataSetTableAdapters.EspaceTupleTableAdapter espaceTupleTableAdaptater;
 
         public DAO()
         {
-            SqlConnection conn = new SqlConnection("Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\\Users\\Julien\\Source\\Repos\\DrainageMine\\DrainageMine\\Minage.mdf;Integrated Security=True;Connect Timeout=30");
-            minDataSet = new MinageDataSet();
-            espaceTupleTableAdaptater = new MinageDataSetTableAdapters.EspaceTupleTableAdapter();
             MongoClient client = new MongoClient(connectionString);
             MongoServer server = client.GetServer();
             MongoDatabase database = server.GetDatabase("EspaceTuples");
@@ -51,7 +46,7 @@ namespace DrainageMine
                 return tuple;
 
             }
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException)
             {
                 return null;
             }

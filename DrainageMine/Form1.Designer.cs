@@ -37,7 +37,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pumpPictureBox = new System.Windows.Forms.PictureBox();
             this.espaceTupleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.minageDataSet = new DrainageMine.MinageDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.setSeuilHautButton = new System.Windows.Forms.Button();
@@ -47,13 +46,10 @@
             this.CH4SeuilHautLabel = new System.Windows.Forms.Label();
             this.H2OSeuilHautTextBox = new System.Windows.Forms.TextBox();
             this.H2OSeuilHautLabel = new System.Windows.Forms.Label();
-            this.espaceTupleTableAdapter = new DrainageMine.MinageDataSetTableAdapters.EspaceTupleTableAdapter();
-            this.tableAdapterManager = new DrainageMine.MinageDataSetTableAdapters.TableAdapterManager();
             this.designPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pumpPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.espaceTupleBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minageDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -123,12 +119,6 @@
             // espaceTupleBindingSource
             // 
             this.espaceTupleBindingSource.DataMember = "EspaceTuple";
-            this.espaceTupleBindingSource.DataSource = this.minageDataSet;
-            // 
-            // minageDataSet
-            // 
-            this.minageDataSet.DataSetName = "MinageDataSet";
-            this.minageDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -224,16 +214,7 @@
             this.H2OSeuilHautLabel.Size = new System.Drawing.Size(37, 17);
             this.H2OSeuilHautLabel.TabIndex = 0;
             this.H2OSeuilHautLabel.Text = "H2O";
-            // 
-            // espaceTupleTableAdapter
-            // 
-            this.espaceTupleTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.EspaceTupleTableAdapter = this.espaceTupleTableAdapter;
-            this.tableAdapterManager.UpdateOrder = DrainageMine.MinageDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+
             // 
             // Form1
             // 
@@ -251,7 +232,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pumpPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.espaceTupleBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minageDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -268,10 +248,7 @@
         private System.Windows.Forms.TextBox chTextBox;
         private System.Windows.Forms.TextBox coTextBox;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private MinageDataSet minageDataSet;
         private System.Windows.Forms.BindingSource espaceTupleBindingSource;
-        private MinageDataSetTableAdapters.EspaceTupleTableAdapter espaceTupleTableAdapter;
-        private MinageDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label H2OSeuilHautLabel;
         private System.Windows.Forms.TextBox CH4SeuilHautTextBox;
