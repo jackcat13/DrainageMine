@@ -10,8 +10,6 @@ namespace DrainageMine.Model
 
     class LindaTuple
     {
-        private string tuple;
-
         public ObjectId Id { get; set; }
 
         public string Arguments { get; set;}
@@ -27,7 +25,7 @@ namespace DrainageMine.Model
 
         public LindaTuple(string tuple)
         {
-            this.tuple = tuple;
+            this.Arguments = Arguments;
         }
 
 
