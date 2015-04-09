@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,10 +27,16 @@ namespace DrainageMine
                 H2OSeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_H2O_Haut").Arguments.Split(',')[1];
                 COSeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_CO_Haut").Arguments.Split(',')[1];
                 CH4SeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_CH4_Haut").Arguments.Split(',')[1];
+                H20ValueTextBox.Text = linda.lindaReadP("niveau_H20").Arguments.Split(',')[1];
+                COValueTextBox.Text = linda.lindaReadP("niveau_CO").Arguments.Split(',')[1];
+                CH4ValueTextBox.Text = linda.lindaReadP("niveau_CH4").Arguments.Split(',')[1];
             }
             catch(Exception e){
                 Console.WriteLine(e);
             }
+
+            Thread capteurCH4 = new Thread(agentCapteurCH4);
+            capteurCH4.Start();
 
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
         }
@@ -41,19 +48,19 @@ namespace DrainageMine
             tupleH2O.Add("value_Seuil_H2O_Haut");
             tupleH2O.Add(H2OSeuilHautTextBox.Text);
             LindaTuple seuilH2OHaut = new LindaTuple(tupleH2O);
-            linda.lindaOut(seuilH2OHaut);
+            linda.lindaAdd("value_Seuil_H2O_Haut", seuilH2OHaut);
 
             List<string> tupleCO = new List<string>();
             tupleCO.Add("value_Seuil_CO_Haut");
             tupleCO.Add(COSeuilHautTextBox.Text);
             LindaTuple seuilCOHaut = new LindaTuple(tupleCO);
-            linda.lindaOut(seuilCOHaut);
+            linda.lindaAdd("value_Seuil_CO_Haut", seuilCOHaut);
 
             List<string> tupleCH4 = new List<string>();
             tupleCH4.Add("value_Seuil_CH4_Haut");
             tupleCH4.Add(CH4SeuilHautTextBox.Text);
             LindaTuple seuilCH4Haut = new LindaTuple(tupleCH4);
-            linda.lindaOut(seuilCH4Haut);
+            linda.lindaAdd("value_Seuil_CH4_Haut", seuilCH4Haut);
             
         }
 
@@ -72,13 +79,13 @@ namespace DrainageMine
 
         }
 
-        private void ControlPanel_Paint(object sender, PaintEventArgs e)
+        private void agentCapteurCH4()
         {
-
+            while (true)
+            {
+                //linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + CH4ValueTextBox.Text));
+            }
         }
-
-
-
 
     }
 }

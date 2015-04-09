@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.designPanel = new System.Windows.Forms.Panel();
-            this.waterLevelTextBox = new System.Windows.Forms.TextBox();
-            this.chTextBox = new System.Windows.Forms.TextBox();
-            this.coTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pumpPictureBox = new System.Windows.Forms.PictureBox();
             this.espaceTupleBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -64,39 +61,12 @@
             // 
             // designPanel
             // 
-            this.designPanel.Controls.Add(this.waterLevelTextBox);
-            this.designPanel.Controls.Add(this.chTextBox);
-            this.designPanel.Controls.Add(this.coTextBox);
             this.designPanel.Controls.Add(this.pictureBox1);
             this.designPanel.Controls.Add(this.pumpPictureBox);
             this.designPanel.Location = new System.Drawing.Point(13, 11);
             this.designPanel.Name = "designPanel";
             this.designPanel.Size = new System.Drawing.Size(740, 510);
             this.designPanel.TabIndex = 0;
-            // 
-            // waterLevelTextBox
-            // 
-            this.waterLevelTextBox.Location = new System.Drawing.Point(400, 387);
-            this.waterLevelTextBox.Name = "waterLevelTextBox";
-            this.waterLevelTextBox.ReadOnly = true;
-            this.waterLevelTextBox.Size = new System.Drawing.Size(100, 20);
-            this.waterLevelTextBox.TabIndex = 4;
-            // 
-            // chTextBox
-            // 
-            this.chTextBox.Location = new System.Drawing.Point(501, 191);
-            this.chTextBox.Name = "chTextBox";
-            this.chTextBox.ReadOnly = true;
-            this.chTextBox.Size = new System.Drawing.Size(100, 20);
-            this.chTextBox.TabIndex = 3;
-            // 
-            // coTextBox
-            // 
-            this.coTextBox.Location = new System.Drawing.Point(501, 141);
-            this.coTextBox.Name = "coTextBox";
-            this.coTextBox.ReadOnly = true;
-            this.coTextBox.Size = new System.Drawing.Size(100, 20);
-            this.coTextBox.TabIndex = 2;
             // 
             // pictureBox1
             // 
@@ -130,7 +100,6 @@
             this.ControlPanel.Name = "ControlPanel";
             this.ControlPanel.Size = new System.Drawing.Size(454, 510);
             this.ControlPanel.TabIndex = 1;
-            this.ControlPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ControlPanel_Paint);
             // 
             // groupBox2
             // 
@@ -153,7 +122,6 @@
             this.COValueTextBox.Name = "COValueTextBox";
             this.COValueTextBox.Size = new System.Drawing.Size(138, 20);
             this.COValueTextBox.TabIndex = 5;
-            this.COValueTextBox.Text = "50";
             // 
             // COValue
             // 
@@ -170,7 +138,6 @@
             this.CH4ValueTextBox.Name = "CH4ValueTextBox";
             this.CH4ValueTextBox.Size = new System.Drawing.Size(138, 20);
             this.CH4ValueTextBox.TabIndex = 3;
-            this.CH4ValueTextBox.Text = "50";
             // 
             // CH4Value
             // 
@@ -187,7 +154,6 @@
             this.H20ValueTextBox.Name = "H20ValueTextBox";
             this.H20ValueTextBox.Size = new System.Drawing.Size(138, 20);
             this.H20ValueTextBox.TabIndex = 1;
-            this.H20ValueTextBox.Text = "50";
             // 
             // H2OValue
             // 
@@ -286,7 +252,6 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.designPanel.ResumeLayout(false);
-            this.designPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pumpPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.espaceTupleBindingSource)).EndInit();
@@ -304,9 +269,6 @@
         private System.Windows.Forms.Panel designPanel;
         private System.Windows.Forms.PictureBox pumpPictureBox;
         private System.Windows.Forms.Panel ControlPanel;
-        private System.Windows.Forms.TextBox waterLevelTextBox;
-        private System.Windows.Forms.TextBox chTextBox;
-        private System.Windows.Forms.TextBox coTextBox;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.BindingSource espaceTupleBindingSource;
         private System.Windows.Forms.GroupBox groupBox1;

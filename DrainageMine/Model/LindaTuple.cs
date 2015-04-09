@@ -16,7 +16,6 @@ namespace DrainageMine.Model
 
         public LindaTuple( List<string> arguments )
         {
-
             this.Arguments = arguments[0];
             for ( int i=1; i < arguments.Count; i++ ){
                 this.Arguments += "," + arguments[i];
