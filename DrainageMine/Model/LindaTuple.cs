@@ -24,7 +24,7 @@ namespace DrainageMine.Model
 
         public LindaTuple(string tuple)
         {
-            this.Arguments = Arguments;
+            this.Arguments = tuple;
         }
 
 
