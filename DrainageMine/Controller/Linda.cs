@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DrainageMine.Model;
 
 namespace DrainageMine.Controller
 {
@@ -16,31 +17,31 @@ namespace DrainageMine.Controller
             dao = new DAO();
         }
 
-        public void lindaOut( Tuple tuple )
+        public void lindaOut( LindaTuple tuple )
         {
             dao.addTuple(tuple);
         }
 
-        public void lindaAdd( string filter, Tuple tuple )
+        public void lindaAdd( string filter, LindaTuple tuple )
         {
             dao.updateTuple(filter, tuple.Arguments);
         }
 
 
-        public Tuple lindaIn(string filter){
+        public LindaTuple lindaIn(string filter){
             while (dao.getTuple(filter) == null);
-            Tuple tuple = dao.getTuple(filter);
+            LindaTuple tuple = dao.getTuple(filter);
             dao.deleteTuple(tuple);
             return tuple;
         }
 
-        public Tuple lindaRead(string filter)
+        public LindaTuple lindaRead(string filter)
         {
             while (dao.getTuple(filter) == null);
             return dao.getTuple(filter);
         }
 
-        public Tuple lindaReadP(string filter)
+        public LindaTuple lindaReadP(string filter)
         {
             return dao.getTuple(filter);
         }

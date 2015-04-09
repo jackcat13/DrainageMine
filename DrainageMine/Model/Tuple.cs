@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrainageMine.Controller
+namespace DrainageMine.Model
 {
 
-    class Tuple
+    class LindaTuple
     {
         private string tuple;
 
@@ -16,19 +16,21 @@ namespace DrainageMine.Controller
 
         public string Arguments { get; set;}
 
-        public Tuple( List<string> arguments )
+        public LindaTuple( List<string> arguments )
         {
 
             this.Arguments = arguments[0];
             for ( int i=1; i < arguments.Count; i++ ){
-                this.Arguments += ", " + arguments[i];
+                this.Arguments += "," + arguments[i];
             }
         }
 
-        public Tuple(string tuple)
+        public LindaTuple(string tuple)
         {
             this.tuple = tuple;
         }
+
+
 
     }
 }
