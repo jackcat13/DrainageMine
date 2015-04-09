@@ -75,7 +75,7 @@ namespace DrainageMine
             if (MessageBox.Show("Êtes-vous sûr de vouloir quitter ?", "Ne partez pas :-(", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Application.Exit();
-            }
+            }*/
 
         }
 
@@ -83,6 +83,7 @@ namespace DrainageMine
         {
             while (true)
             {
+                Console.WriteLine("Thread en marche !");
                 //linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + CH4ValueTextBox.Text));
             }
         }
