@@ -24,6 +24,7 @@ namespace DrainageMine
 
         private Thread pompe;
         private Thread ventilateur;
+        private Thread commandePompeVentilo;
 
         public Form1()
         {
@@ -119,6 +120,10 @@ namespace DrainageMine
             {
                 ventilateur.Abort();
             }
+            if (commandePompeVentilo.IsAlive)
+            {
+                commandePompeVentilo.Abort();
+            }
         }
 
         private void agentCapteurH20()
@@ -178,6 +183,9 @@ namespace DrainageMine
             Ventilateur v = new Ventilateur(linda);
             ventilateur = new Thread(v.agentVentilateur);
             ventilateur.Start();
+            CommandePompeVentilo cpv = new CommandePompeVentilo(linda);
+            commandePompeVentilo = new Thread(cpv.agentCommandePompeVentilo);
+            commandePompeVentilo.Start();
         }
 
     }
