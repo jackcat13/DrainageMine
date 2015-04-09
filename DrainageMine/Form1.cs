@@ -22,6 +22,9 @@ namespace DrainageMine
         private Thread capteurC0;
         private Thread capteurCH4;
 
+        private Thread pompe;
+        private Thread ventilateur;
+
         public Form1()
         {
             InitializeComponent();
@@ -152,6 +155,13 @@ namespace DrainageMine
             capteurC0.Start();
             capteurCH4 = new Thread(agentCapteurCH4);
             capteurCH4.Start();
+
+            Pompe p = new Pompe(linda);
+            pompe = new Thread(p.agentPompe);
+            pompe.Start();
+            Ventilateur v = new Ventilateur(linda);
+            ventilateur = new Thread(v.agentVentilateur);
+            ventilateur.Start();
         }
 
     }
