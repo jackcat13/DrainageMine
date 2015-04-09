@@ -30,9 +30,15 @@ namespace DrainageMine.Model
         }
 
         public void addTuple(LindaTuple tuple){
-            collection.Insert(tuple);
-            var id = tuple.Id; // Insert will set the Id if necessary (as it was in this example)
-
+            try
+            {
+                collection.Insert(tuple.Arguments);
+                var id = tuple.Id; // Insert will set the Id if necessary (as it was in this example)
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
         }
 

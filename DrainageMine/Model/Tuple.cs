@@ -10,15 +10,12 @@ namespace DrainageMine.Model
 
     class LindaTuple
     {
-        private string tuple;
-
         public ObjectId Id { get; set; }
 
         public string Arguments { get; set;}
 
         public LindaTuple( List<string> arguments )
         {
-
             this.Arguments = arguments[0];
             for ( int i=1; i < arguments.Count; i++ ){
                 this.Arguments += "," + arguments[i];
@@ -27,7 +24,7 @@ namespace DrainageMine.Model
 
         public LindaTuple(string tuple)
         {
-            this.tuple = tuple;
+            this.Arguments = tuple;
         }
 
 
