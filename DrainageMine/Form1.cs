@@ -1,4 +1,4 @@
-﻿using DrainageMine.Model;
+﻿using DrainageMine.Controller;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +20,7 @@ namespace DrainageMine
         {
             InitializeComponent();
             linda = new Linda();
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
+            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
         }
 
 
@@ -60,9 +60,6 @@ namespace DrainageMine
             }
 
         }
-
-
-
 
     }
 }

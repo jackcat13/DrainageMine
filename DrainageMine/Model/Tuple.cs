@@ -22,7 +22,7 @@ namespace DrainageMine.Model
 
             this.Arguments = arguments[0];
             for ( int i=1; i < arguments.Count; i++ ){
-                this.Arguments += ", " + arguments[i];
+                this.Arguments += "," + arguments[i];
             }
         }
 
@@ -30,6 +30,8 @@ namespace DrainageMine.Model
         {
             this.tuple = tuple;
         }
+
+
 
     }
 }

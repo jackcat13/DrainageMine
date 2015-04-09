@@ -17,7 +17,6 @@ namespace DrainageMine
     class DAO
     {
 
-        SqlConnection conn;
         string connectionString = "mongodb://localhost";
         MongoCollection collection;
         
