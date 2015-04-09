@@ -1,18 +1,17 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+using MongoDB.Driver.GridFS;
+using MongoDB.Driver.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using MongoDB.Driver.GridFS;
-using MongoDB.Driver.Linq;
-using DrainageMine.Controller;
 using System.Windows.Forms;
 
-namespace DrainageMine
+namespace DrainageMine.Model
 {
     class DAO
     {
@@ -26,22 +25,22 @@ namespace DrainageMine
             MongoClient client = new MongoClient(connectionString);
             MongoServer server = client.GetServer();
             MongoDatabase database = server.GetDatabase("EspaceTuples");
-            collection = database.GetCollection<DrainageMine.Controller.Tuple>("tuples");
+            collection = database.GetCollection<LindaTuple>("tuples");
 
         }
 
-        public void addTuple(DrainageMine.Controller.Tuple tuple){
+        public void addTuple(LindaTuple tuple){
             collection.Insert(tuple);
             var id = tuple.Id; // Insert will set the Id if necessary (as it was in this example)
 
 
         }
 
-        public DrainageMine.Controller.Tuple getTuple(string filter)
+        public LindaTuple getTuple(string filter)
         {
             try
             {
-                var tuple = collection.AsQueryable<DrainageMine.Controller.Tuple>().Where(Tuple => Tuple.Arguments.Contains(filter)).First();
+                var tuple = collection.AsQueryable<LindaTuple>().Where(Tuple => Tuple.Arguments.Contains(filter)).First();
                 return tuple;
 
             }
@@ -52,9 +51,9 @@ namespace DrainageMine
 
         }
 
-        public void deleteTuple(DrainageMine.Controller.Tuple tuple)
+        public void deleteTuple(LindaTuple tuple)
         {
-            var query = Query<DrainageMine.Controller.Tuple>.EQ(e => e.Id, tuple.Id);
+            var query = Query<LindaTuple>.EQ(e => e.Id, tuple.Id);
             collection.Remove(query);
         }
 
@@ -64,14 +63,14 @@ namespace DrainageMine
  
             if (tupleAModifier != null)
             {
-                var query = Query<DrainageMine.Controller.Tuple>.EQ(e => e.Id, tupleAModifier.Id);
-                var update = Update<DrainageMine.Controller.Tuple>.Set(e => e.Arguments, arguments); // update modifiers
+                var query = Query<LindaTuple>.EQ(e => e.Id, tupleAModifier.Id);
+                var update = Update<LindaTuple>.Set(e => e.Arguments, arguments); // update modifiers
                 collection.Update(query, update);
             }
             else
             
             {
-                this.addTuple(new DrainageMine.Controller.Tuple(arguments));
+                this.addTuple(new LindaTuple(arguments));
             }
         }
     }

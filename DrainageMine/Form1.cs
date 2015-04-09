@@ -1,4 +1,5 @@
 ﻿using DrainageMine.Controller;
+using DrainageMine.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,19 +40,19 @@ namespace DrainageMine
             List<string> tupleH2O = new List<string>();
             tupleH2O.Add("value_Seuil_H2O_Haut");
             tupleH2O.Add(H2OSeuilHautTextBox.Text);
-            Controller.Tuple seuilH2OHaut = new Controller.Tuple(tupleH2O);
+            LindaTuple seuilH2OHaut = new LindaTuple(tupleH2O);
             linda.lindaOut(seuilH2OHaut);
 
             List<string> tupleCO = new List<string>();
             tupleCO.Add("value_Seuil_CO_Haut");
             tupleCO.Add(COSeuilHautTextBox.Text);
-            Controller.Tuple seuilCOHaut = new Controller.Tuple(tupleCO);
+            LindaTuple seuilCOHaut = new LindaTuple(tupleCO);
             linda.lindaOut(seuilCOHaut);
 
             List<string> tupleCH4 = new List<string>();
             tupleCH4.Add("value_Seuil_CH4_Haut");
             tupleCH4.Add(CH4SeuilHautTextBox.Text);
-            Controller.Tuple seuilCH4Haut = new Controller.Tuple(tupleCH4);
+            LindaTuple seuilCH4Haut = new LindaTuple(tupleCH4);
             linda.lindaOut(seuilCH4Haut);
             
         }

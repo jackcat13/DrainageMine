@@ -17,31 +17,31 @@ namespace DrainageMine.Controller
             dao = new DAO();
         }
 
-        public void lindaOut( DrainageMine.Model.Tuple tuple )
+        public void lindaOut( LindaTuple tuple )
         {
             dao.addTuple(tuple);
         }
 
-        public void lindaAdd( string filter, DrainageMine.Model.Tuple tuple )
+        public void lindaAdd( string filter, LindaTuple tuple )
         {
             dao.updateTuple(filter, tuple.Arguments);
         }
 
 
-        public DrainageMine.Model.Tuple lindaIn(string filter){
+        public LindaTuple lindaIn(string filter){
             while (dao.getTuple(filter) == null);
-            DrainageMine.Model.Tuple tuple = dao.getTuple(filter);
+            LindaTuple tuple = dao.getTuple(filter);
             dao.deleteTuple(tuple);
             return tuple;
         }
 
-        public DrainageMine.Model.Tuple lindaRead(string filter)
+        public LindaTuple lindaRead(string filter)
         {
             while (dao.getTuple(filter) == null);
             return dao.getTuple(filter);
         }
 
-        public Tuple lindaReadP(string filter)
+        public LindaTuple lindaReadP(string filter)
         {
             return dao.getTuple(filter);
         }
