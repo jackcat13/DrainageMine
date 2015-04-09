@@ -25,10 +25,13 @@ namespace DrainageMine
             linda = new Linda();
 
             try{
+                H2OSeuilBasTextBox.Text = linda.lindaReadP("value_Seuil_H2O_Bas").Arguments.Split(',')[1];
+                COSeuilBasTextBox.Text = linda.lindaReadP("value_Seuil_CO_Bas").Arguments.Split(',')[1];
+                CH4SeuilBasTextBox.Text = linda.lindaReadP("value_Seuil_CH4_Bas").Arguments.Split(',')[1];
                 H2OSeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_H2O_Haut").Arguments.Split(',')[1];
                 COSeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_CO_Haut").Arguments.Split(',')[1];
                 CH4SeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_CH4_Haut").Arguments.Split(',')[1];
-                H2OValueTextBox.Text = linda.lindaReadP("niveau_H20").Arguments.Split(',')[1];
+                H2OValueTextBox.Text = linda.lindaReadP("niveau_H2O").Arguments.Split(',')[1];
                 COValueTextBox.Text = linda.lindaReadP("niveau_CO").Arguments.Split(',')[1];
                 CH4ValueTextBox.Text = linda.lindaReadP("niveau_CH4").Arguments.Split(',')[1];
             }
@@ -36,16 +39,29 @@ namespace DrainageMine
                 Console.WriteLine(e);
             }
 
-            Thread capteurH20 = new Thread(agentCapteurH20);
-            capteurH20.Start();
-            Thread capteurC0 = new Thread(agentCapteurC0);
-            capteurC0.Start();
-            Thread capteurCH4 = new Thread(agentCapteurCH4);
-            capteurCH4.Start();
-
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
         }
 
+        private void setSeuilBasButton_Click(object sender, EventArgs e)
+        {
+            List<string> tupleH2O = new List<string>();
+            tupleH2O.Add("value_Seuil_H2O_Bas");
+            tupleH2O.Add(H2OSeuilBasTextBox.Text);
+            LindaTuple seuilH2OBas = new LindaTuple(tupleH2O);
+            linda.lindaAdd("value_Seuil_H2O_Bas", seuilH2OBas);
+
+            List<string> tupleCO = new List<string>();
+            tupleCO.Add("value_Seuil_CO_Bas");
+            tupleCO.Add(COSeuilBasTextBox.Text);
+            LindaTuple seuilCOBas = new LindaTuple(tupleCO);
+            linda.lindaAdd("value_Seuil_CO_Bas", seuilCOBas);
+
+            List<string> tupleCH4 = new List<string>();
+            tupleCH4.Add("value_Seuil_CH4_Bas");
+            tupleCH4.Add(CH4SeuilBasTextBox.Text);
+            LindaTuple seuilCH4Bas = new LindaTuple(tupleCH4);
+            linda.lindaAdd("value_Seuil_CH4_Bas", seuilCH4Bas);
+        }
 
         private void setSeuilButton_Click(object sender, EventArgs e)
         {
@@ -66,7 +82,6 @@ namespace DrainageMine
             tupleCH4.Add(CH4SeuilHautTextBox.Text);
             LindaTuple seuilCH4Haut = new LindaTuple(tupleCH4);
             linda.lindaAdd("value_Seuil_CH4_Haut", seuilCH4Haut);
-            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -122,6 +137,16 @@ namespace DrainageMine
                     Console.WriteLine(e);
                 }
             }
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            Thread capteurH20 = new Thread(agentCapteurH20);
+            capteurH20.Start();
+            Thread capteurC0 = new Thread(agentCapteurC0);
+            capteurC0.Start();
+            Thread capteurCH4 = new Thread(agentCapteurCH4);
+            capteurCH4.Start();
         }
 
     }
