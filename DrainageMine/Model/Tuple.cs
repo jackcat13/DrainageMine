@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrainageMine.Model
+namespace DrainageMine.Controller
 {
 
     class Tuple
     {
         private string tuple;
-
 
         public ObjectId Id { get; set; }
 

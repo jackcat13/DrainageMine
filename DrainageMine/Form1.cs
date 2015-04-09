@@ -1,4 +1,4 @@
-﻿using DrainageMine.Model;
+﻿using DrainageMine.Controller;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +20,16 @@ namespace DrainageMine
         {
             InitializeComponent();
             linda = new Linda();
+
+            try{
+                H2OSeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_H2O_Haut").Arguments.Split(',')[1];
+                COSeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_CO_Haut").Arguments.Split(',')[1];
+                CH4SeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_CH4_Haut").Arguments.Split(',')[1];
+            }
+            catch(Exception e){
+                Console.WriteLine(e);
+            }
+
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
         }
 
@@ -29,19 +39,19 @@ namespace DrainageMine
             List<string> tupleH2O = new List<string>();
             tupleH2O.Add("value_Seuil_H2O_Haut");
             tupleH2O.Add(H2OSeuilHautTextBox.Text);
-            Model.Tuple seuilH2OHaut = new Model.Tuple(tupleH2O);
+            Controller.Tuple seuilH2OHaut = new Controller.Tuple(tupleH2O);
             linda.lindaOut(seuilH2OHaut);
 
             List<string> tupleCO = new List<string>();
             tupleCO.Add("value_Seuil_CO_Haut");
             tupleCO.Add(COSeuilHautTextBox.Text);
-            Model.Tuple seuilCOHaut = new Model.Tuple(tupleCO);
+            Controller.Tuple seuilCOHaut = new Controller.Tuple(tupleCO);
             linda.lindaOut(seuilCOHaut);
 
             List<string> tupleCH4 = new List<string>();
             tupleCH4.Add("value_Seuil_CH4_Haut");
             tupleCH4.Add(CH4SeuilHautTextBox.Text);
-            Model.Tuple seuilCH4Haut = new Model.Tuple(tupleCH4);
+            Controller.Tuple seuilCH4Haut = new Controller.Tuple(tupleCH4);
             linda.lindaOut(seuilCH4Haut);
             
         }

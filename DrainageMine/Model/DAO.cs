@@ -9,7 +9,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
 using MongoDB.Driver.Linq;
-using DrainageMine.Model;
+using DrainageMine.Controller;
 using System.Windows.Forms;
 
 namespace DrainageMine
@@ -27,22 +27,22 @@ namespace DrainageMine
             MongoClient client = new MongoClient(connectionString);
             MongoServer server = client.GetServer();
             MongoDatabase database = server.GetDatabase("EspaceTuples");
-            collection = database.GetCollection<DrainageMine.Model.Tuple>("tuples");
+            collection = database.GetCollection<DrainageMine.Controller.Tuple>("tuples");
 
         }
 
-        public void addTuple(DrainageMine.Model.Tuple tuple){
+        public void addTuple(DrainageMine.Controller.Tuple tuple){
             collection.Insert(tuple);
             var id = tuple.Id; // Insert will set the Id if necessary (as it was in this example)
 
 
         }
 
-        public DrainageMine.Model.Tuple getTuple(string filter)
+        public DrainageMine.Controller.Tuple getTuple(string filter)
         {
             try
             {
-                var tuple = collection.AsQueryable<DrainageMine.Model.Tuple>().Where(Tuple => Tuple.Arguments.Contains(filter)).First();
+                var tuple = collection.AsQueryable<DrainageMine.Controller.Tuple>().Where(Tuple => Tuple.Arguments.Contains(filter)).First();
                 return tuple;
 
             }
@@ -53,9 +53,9 @@ namespace DrainageMine
 
         }
 
-        public void deleteTuple(DrainageMine.Model.Tuple tuple)
+        public void deleteTuple(DrainageMine.Controller.Tuple tuple)
         {
-            var query = Query<DrainageMine.Model.Tuple>.EQ(e => e.Id, tuple.Id);
+            var query = Query<DrainageMine.Controller.Tuple>.EQ(e => e.Id, tuple.Id);
             collection.Remove(query);
         }
 
@@ -65,14 +65,14 @@ namespace DrainageMine
  
             if (tupleAModifier != null)
             {
-                var query = Query<DrainageMine.Model.Tuple>.EQ(e => e.Id, tupleAModifier.Id);
-                var update = Update<DrainageMine.Model.Tuple>.Set(e => e.Arguments, arguments); // update modifiers
+                var query = Query<DrainageMine.Controller.Tuple>.EQ(e => e.Id, tupleAModifier.Id);
+                var update = Update<DrainageMine.Controller.Tuple>.Set(e => e.Arguments, arguments); // update modifiers
                 collection.Update(query, update);
             }
             else
             
             {
-                this.addTuple(new DrainageMine.Model.Tuple(arguments));
+                this.addTuple(new DrainageMine.Controller.Tuple(arguments));
             }
         }
     }

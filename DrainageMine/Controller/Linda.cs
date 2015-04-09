@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DrainageMine.Model
+namespace DrainageMine.Controller
 {
     class Linda
     {
@@ -40,5 +40,9 @@ namespace DrainageMine.Model
             return dao.getTuple(filter);
         }
 
+        public Tuple lindaReadP(string filter)
+        {
+            return dao.getTuple(filter);
+        }
     }
 }
