@@ -25,6 +25,7 @@ namespace DrainageMine
         private Thread pompe;
         private Thread ventilateur;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -170,6 +171,7 @@ namespace DrainageMine
             Ventilateur v = new Ventilateur(linda);
             ventilateur = new Thread(v.agentVentilateur);
             ventilateur.Start();
+
         }
 
     }
