@@ -41,5 +41,9 @@ namespace DrainageMine.Controller
             return dao.getTuple(filter);
         }
 
+        public Tuple lindaReadP(string filter)
+        {
+            return dao.getTuple(filter);
+        }
     }
 }
