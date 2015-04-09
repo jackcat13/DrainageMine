@@ -77,7 +77,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\Linda.cs" />
-    <Compile Include="Model\Tuple.cs" />
+    <Compile Include="Model\LindaTuple.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
