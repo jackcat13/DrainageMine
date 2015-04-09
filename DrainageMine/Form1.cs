@@ -29,6 +29,10 @@ namespace DrainageMine
         {
             InitializeComponent();
             linda = new Linda();
+            capteurH20 = new Thread(agentCapteurH20);
+            capteurC0 = new Thread(agentCapteurC0);
+            capteurCH4 = new Thread(agentCapteurCH4);
+            
 
             try{
                 H2OSeuilBasTextBox.Text = linda.lindaReadP("value_Seuil_H2O_Bas").Arguments.Split(',')[1];
@@ -45,6 +49,7 @@ namespace DrainageMine
                 Console.WriteLine(e);
             }
 
+            
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
         }
 
@@ -97,9 +102,15 @@ namespace DrainageMine
 
         private void Form1_Closing(object sender, FormClosingEventArgs e)
         {
+            if (capteurH20.IsAlive) { 
             capteurH20.Abort();
+            }
+            if (capteurC0.IsAlive)  { 
             capteurC0.Abort();
-            capteurCH4.Abort();
+             }
+            if (capteurCH4.IsAlive) {
+                 capteurCH4.Abort();
+             }
         }
 
         private void agentCapteurH20()
@@ -149,11 +160,8 @@ namespace DrainageMine
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            capteurH20 = new Thread(agentCapteurH20);
             capteurH20.Start();
-            capteurC0 = new Thread(agentCapteurC0);
             capteurC0.Start();
-            capteurCH4 = new Thread(agentCapteurCH4);
             capteurCH4.Start();
 
             Pompe p = new Pompe(linda);
