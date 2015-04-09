@@ -112,6 +112,14 @@ namespace DrainageMine
             if (capteurCH4.IsAlive) {
                  capteurCH4.Abort();
              }
+            if (pompe.IsAlive)
+            {
+                pompe.Abort();
+            }
+            if (ventilateur.IsAlive)
+            {
+                ventilateur.Abort();
+            }
         }
 
         private void agentCapteurH20()
