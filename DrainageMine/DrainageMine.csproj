@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Detection_gaz_bas.cs" />
     <Compile Include="Controller\CommandePompeVentilo.cs" />
     <Compile Include="Controller\H2O_seuil_haut.cs" />
     <Compile Include="Controller\Pompe.cs" />
