@@ -27,7 +27,7 @@ namespace DrainageMine
                 H2OSeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_H2O_Haut").Arguments.Split(',')[1];
                 COSeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_CO_Haut").Arguments.Split(',')[1];
                 CH4SeuilHautTextBox.Text = linda.lindaReadP("value_Seuil_CH4_Haut").Arguments.Split(',')[1];
-                H20ValueTextBox.Text = linda.lindaReadP("niveau_H20").Arguments.Split(',')[1];
+                H2OValueTextBox.Text = linda.lindaReadP("niveau_H20").Arguments.Split(',')[1];
                 COValueTextBox.Text = linda.lindaReadP("niveau_CO").Arguments.Split(',')[1];
                 CH4ValueTextBox.Text = linda.lindaReadP("niveau_CH4").Arguments.Split(',')[1];
             }
@@ -35,6 +35,10 @@ namespace DrainageMine
                 Console.WriteLine(e);
             }
 
+            Thread capteurH20 = new Thread(agentCapteurH20);
+            capteurH20.Start();
+            Thread capteurC0 = new Thread(agentCapteurC0);
+            capteurC0.Start();
             Thread capteurCH4 = new Thread(agentCapteurCH4);
             capteurCH4.Start();
 
@@ -79,11 +83,27 @@ namespace DrainageMine
 
         }
 
+        private void agentCapteurH20()
+        {
+            while (true)
+            {
+                linda.lindaAdd("niveau_H2O", new LindaTuple("niveau_H2O," + H2OValueTextBox.Text));
+            }
+        }
+
+        private void agentCapteurC0()
+        {
+            while (true)
+            {
+                linda.lindaAdd("niveau_CO", new LindaTuple("niveau_CO," + COValueTextBox.Text));
+            }
+        }
+
         private void agentCapteurCH4()
         {
             while (true)
             {
-                //linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + CH4ValueTextBox.Text));
+                linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + CH4ValueTextBox.Text));
             }
         }
 

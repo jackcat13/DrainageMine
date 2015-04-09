@@ -40,7 +40,7 @@
             this.COValue = new System.Windows.Forms.Label();
             this.CH4ValueTextBox = new System.Windows.Forms.TextBox();
             this.CH4Value = new System.Windows.Forms.Label();
-            this.H20ValueTextBox = new System.Windows.Forms.TextBox();
+            this.H2OValueTextBox = new System.Windows.Forms.TextBox();
             this.H2OValue = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.setSeuilHautButton = new System.Windows.Forms.Button();
@@ -107,7 +107,7 @@
             this.groupBox2.Controls.Add(this.COValue);
             this.groupBox2.Controls.Add(this.CH4ValueTextBox);
             this.groupBox2.Controls.Add(this.CH4Value);
-            this.groupBox2.Controls.Add(this.H20ValueTextBox);
+            this.groupBox2.Controls.Add(this.H2OValueTextBox);
             this.groupBox2.Controls.Add(this.H2OValue);
             this.groupBox2.Location = new System.Drawing.Point(240, 9);
             this.groupBox2.Name = "groupBox2";
@@ -148,12 +148,12 @@
             this.CH4Value.TabIndex = 2;
             this.CH4Value.Text = "CH4";
             // 
-            // H20ValueTextBox
+            // H2OValueTextBox
             // 
-            this.H20ValueTextBox.Location = new System.Drawing.Point(41, 28);
-            this.H20ValueTextBox.Name = "H20ValueTextBox";
-            this.H20ValueTextBox.Size = new System.Drawing.Size(138, 20);
-            this.H20ValueTextBox.TabIndex = 1;
+            this.H2OValueTextBox.Location = new System.Drawing.Point(41, 28);
+            this.H2OValueTextBox.Name = "H2OValueTextBox";
+            this.H2OValueTextBox.Size = new System.Drawing.Size(138, 20);
+            this.H2OValueTextBox.TabIndex = 1;
             // 
             // H2OValue
             // 
@@ -284,7 +284,7 @@
         private System.Windows.Forms.Label COValue;
         private System.Windows.Forms.TextBox CH4ValueTextBox;
         private System.Windows.Forms.Label CH4Value;
-        private System.Windows.Forms.TextBox H20ValueTextBox;
+        private System.Windows.Forms.TextBox H2OValueTextBox;
         private System.Windows.Forms.Label H2OValue;
     }
 }

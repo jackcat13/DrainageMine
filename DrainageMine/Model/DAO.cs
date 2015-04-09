@@ -74,7 +74,6 @@ namespace DrainageMine.Model
                 collection.Update(query, update);
             }
             else
-            
             {
                 this.addTuple(new LindaTuple(arguments));
             }
