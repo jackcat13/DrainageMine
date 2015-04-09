@@ -32,9 +32,12 @@ namespace DrainageMine.Model
         public void addTuple(LindaTuple tuple){
             try
             {
-                collection.Insert(tuple.Arguments);
-                var id = tuple.Id; // Insert will set the Id if necessary (as it was in this example)
-            }
+                Console.WriteLine("Arguments : " + tuple.Arguments);
+                var arguments = tuple.Arguments;
+                var document = new BsonDocument();
+                document["Arguments"] = arguments;
+                collection.Insert(document);
+           }
             catch (Exception e)
             {
                 Console.WriteLine(e);
