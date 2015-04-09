@@ -18,6 +18,9 @@ namespace DrainageMine
 
         private Linda linda;
         private Boolean exit = false;
+        private Thread capteurH20;
+        private Thread capteurC0;
+        private Thread capteurCH4;
 
         public Form1()
         {
@@ -36,11 +39,11 @@ namespace DrainageMine
                 Console.WriteLine(e);
             }
 
-            Thread capteurH20 = new Thread(agentCapteurH20);
+            capteurH20 = new Thread(agentCapteurH20);
             capteurH20.Start();
-            Thread capteurC0 = new Thread(agentCapteurC0);
+            capteurC0 = new Thread(agentCapteurC0);
             capteurC0.Start();
-            Thread capteurCH4 = new Thread(agentCapteurCH4);
+            capteurCH4 = new Thread(agentCapteurCH4);
             capteurCH4.Start();
 
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
@@ -76,19 +79,21 @@ namespace DrainageMine
 
         private void Form1_Closing(object sender, FormClosingEventArgs e)
         {
-            exit = true;
+            capteurH20.Abort();
+            capteurC0.Abort();
+            capteurCH4.Abort();
         }
-
-        private void agentCapteurH20()
+            
+       private void agentCapteurH20()
         {
-            while (exit == false)
+            while (true)
             {
                 try
                 {
                     linda.lindaAdd("niveau_H2O", new LindaTuple("niveau_H2O," + H2OValueTextBox.Text));
                 }
                 catch (Exception e)
-                {
+            {
                     Console.WriteLine(e);
                 }
             }
@@ -96,7 +101,7 @@ namespace DrainageMine
 
         private void agentCapteurC0()
         {
-            while (exit == false)
+            while (true)
             {
                 try
                 {
@@ -106,19 +111,19 @@ namespace DrainageMine
                 {
                     Console.WriteLine(e);
                 }
-            }
+        }
         }
 
         private void agentCapteurCH4()
         {
-            while (exit == false)
+            while (true)
             {
                 try
                 {
                     linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + CH4ValueTextBox.Text));
                 }
                 catch (Exception e)
-                {
+            {
                     Console.WriteLine(e);
                 }
             }
