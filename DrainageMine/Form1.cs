@@ -18,6 +18,9 @@ namespace DrainageMine
 
         private Linda linda;
         private Boolean exit = false;
+        private Thread capteurH20;
+        private Thread capteurC0;
+        private Thread capteurCH4;
 
         public Form1()
         {
@@ -91,12 +94,14 @@ namespace DrainageMine
 
         private void Form1_Closing(object sender, FormClosingEventArgs e)
         {
-            exit = true;
+            capteurH20.Abort();
+            capteurC0.Abort();
+            capteurCH4.Abort();
         }
 
         private void agentCapteurH20()
         {
-            while (exit == false)
+            while (true)
             {
                 try
                 {
@@ -111,7 +116,7 @@ namespace DrainageMine
 
         private void agentCapteurC0()
         {
-            while (exit == false)
+            while (true)
             {
                 try
                 {
@@ -126,7 +131,7 @@ namespace DrainageMine
 
         private void agentCapteurCH4()
         {
-            while (exit == false)
+            while (true)
             {
                 try
                 {
@@ -141,11 +146,11 @@ namespace DrainageMine
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            Thread capteurH20 = new Thread(agentCapteurH20);
+            capteurH20 = new Thread(agentCapteurH20);
             capteurH20.Start();
-            Thread capteurC0 = new Thread(agentCapteurC0);
+            capteurC0 = new Thread(agentCapteurC0);
             capteurC0.Start();
-            Thread capteurCH4 = new Thread(agentCapteurCH4);
+            capteurCH4 = new Thread(agentCapteurCH4);
             capteurCH4.Start();
         }
 
