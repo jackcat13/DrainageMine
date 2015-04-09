@@ -17,6 +17,7 @@ namespace DrainageMine
     {
 
         private Linda linda;
+        private Boolean exit = false;
 
         public Form1()
         {
@@ -73,37 +74,53 @@ namespace DrainageMine
 
         }
 
-        private void Form1_Closing(object sender, EventArgs e)
+        private void Form1_Closing(object sender, FormClosingEventArgs e)
         {
-            
-            if (MessageBox.Show("Êtes-vous sûr de vouloir quitter ?", "Ne partez pas :-(", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-
+            exit = true;
         }
 
         private void agentCapteurH20()
         {
-            while (true)
+            while (exit == false)
             {
-                linda.lindaAdd("niveau_H2O", new LindaTuple("niveau_H2O," + H2OValueTextBox.Text));
+                try
+                {
+                    linda.lindaAdd("niveau_H2O", new LindaTuple("niveau_H2O," + H2OValueTextBox.Text));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
 
         private void agentCapteurC0()
         {
-            while (true)
+            while (exit == false)
             {
-                linda.lindaAdd("niveau_CO", new LindaTuple("niveau_CO," + COValueTextBox.Text));
+                try
+                {
+                    linda.lindaAdd("niveau_CO", new LindaTuple("niveau_CO," + COValueTextBox.Text));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
 
         private void agentCapteurCH4()
         {
-            while (true)
+            while (exit == false)
             {
-                linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + CH4ValueTextBox.Text));
+                try
+                {
+                    linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + CH4ValueTextBox.Text));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
 
