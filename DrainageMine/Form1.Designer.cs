@@ -37,7 +37,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pumpPictureBox = new System.Windows.Forms.PictureBox();
             this.espaceTupleBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.ControlPanel = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.COValueTextBox = new System.Windows.Forms.TextBox();
+            this.COValue = new System.Windows.Forms.Label();
+            this.CH4ValueTextBox = new System.Windows.Forms.TextBox();
+            this.CH4Value = new System.Windows.Forms.Label();
+            this.H20ValueTextBox = new System.Windows.Forms.TextBox();
+            this.H2OValue = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.setSeuilHautButton = new System.Windows.Forms.Button();
             this.COSeuilHautTextBox = new System.Windows.Forms.TextBox();
@@ -50,7 +57,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pumpPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.espaceTupleBindingSource)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.ControlPanel.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,46 +69,41 @@
             this.designPanel.Controls.Add(this.coTextBox);
             this.designPanel.Controls.Add(this.pictureBox1);
             this.designPanel.Controls.Add(this.pumpPictureBox);
-            this.designPanel.Location = new System.Drawing.Point(17, 14);
-            this.designPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.designPanel.Location = new System.Drawing.Point(13, 11);
             this.designPanel.Name = "designPanel";
-            this.designPanel.Size = new System.Drawing.Size(987, 628);
+            this.designPanel.Size = new System.Drawing.Size(740, 510);
             this.designPanel.TabIndex = 0;
             // 
             // waterLevelTextBox
             // 
-            this.waterLevelTextBox.Location = new System.Drawing.Point(533, 476);
-            this.waterLevelTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.waterLevelTextBox.Location = new System.Drawing.Point(400, 387);
             this.waterLevelTextBox.Name = "waterLevelTextBox";
             this.waterLevelTextBox.ReadOnly = true;
-            this.waterLevelTextBox.Size = new System.Drawing.Size(132, 22);
+            this.waterLevelTextBox.Size = new System.Drawing.Size(100, 20);
             this.waterLevelTextBox.TabIndex = 4;
             // 
             // chTextBox
             // 
-            this.chTextBox.Location = new System.Drawing.Point(668, 235);
-            this.chTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chTextBox.Location = new System.Drawing.Point(501, 191);
             this.chTextBox.Name = "chTextBox";
             this.chTextBox.ReadOnly = true;
-            this.chTextBox.Size = new System.Drawing.Size(132, 22);
+            this.chTextBox.Size = new System.Drawing.Size(100, 20);
             this.chTextBox.TabIndex = 3;
             // 
             // coTextBox
             // 
-            this.coTextBox.Location = new System.Drawing.Point(668, 174);
-            this.coTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.coTextBox.Location = new System.Drawing.Point(501, 141);
             this.coTextBox.Name = "coTextBox";
             this.coTextBox.ReadOnly = true;
-            this.coTextBox.Size = new System.Drawing.Size(132, 22);
+            this.coTextBox.Size = new System.Drawing.Size(100, 20);
             this.coTextBox.TabIndex = 2;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(320, 174);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(240, 141);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(168, 86);
+            this.pictureBox1.Size = new System.Drawing.Size(126, 70);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -108,10 +111,9 @@
             // pumpPictureBox
             // 
             this.pumpPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pumpPictureBox.Image")));
-            this.pumpPictureBox.Location = new System.Drawing.Point(320, 448);
-            this.pumpPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pumpPictureBox.Location = new System.Drawing.Point(240, 364);
             this.pumpPictureBox.Name = "pumpPictureBox";
-            this.pumpPictureBox.Size = new System.Drawing.Size(168, 85);
+            this.pumpPictureBox.Size = new System.Drawing.Size(126, 69);
             this.pumpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pumpPictureBox.TabIndex = 0;
             this.pumpPictureBox.TabStop = false;
@@ -120,14 +122,81 @@
             // 
             this.espaceTupleBindingSource.DataMember = "EspaceTuple";
             // 
-            // panel1
+            // ControlPanel
             // 
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Location = new System.Drawing.Point(1029, 16);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(605, 628);
-            this.panel1.TabIndex = 1;
+            this.ControlPanel.Controls.Add(this.groupBox2);
+            this.ControlPanel.Controls.Add(this.groupBox1);
+            this.ControlPanel.Location = new System.Drawing.Point(772, 13);
+            this.ControlPanel.Name = "ControlPanel";
+            this.ControlPanel.Size = new System.Drawing.Size(454, 510);
+            this.ControlPanel.TabIndex = 1;
+            this.ControlPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ControlPanel_Paint);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.COValueTextBox);
+            this.groupBox2.Controls.Add(this.COValue);
+            this.groupBox2.Controls.Add(this.CH4ValueTextBox);
+            this.groupBox2.Controls.Add(this.CH4Value);
+            this.groupBox2.Controls.Add(this.H20ValueTextBox);
+            this.groupBox2.Controls.Add(this.H2OValue);
+            this.groupBox2.Location = new System.Drawing.Point(240, 9);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(211, 138);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Valeures capteurs";
+            // 
+            // COValueTextBox
+            // 
+            this.COValueTextBox.Location = new System.Drawing.Point(41, 78);
+            this.COValueTextBox.Name = "COValueTextBox";
+            this.COValueTextBox.Size = new System.Drawing.Size(138, 20);
+            this.COValueTextBox.TabIndex = 5;
+            this.COValueTextBox.Text = "50";
+            // 
+            // COValue
+            // 
+            this.COValue.AutoSize = true;
+            this.COValue.Location = new System.Drawing.Point(6, 81);
+            this.COValue.Name = "COValue";
+            this.COValue.Size = new System.Drawing.Size(22, 13);
+            this.COValue.TabIndex = 4;
+            this.COValue.Text = "CO";
+            // 
+            // CH4ValueTextBox
+            // 
+            this.CH4ValueTextBox.Location = new System.Drawing.Point(41, 53);
+            this.CH4ValueTextBox.Name = "CH4ValueTextBox";
+            this.CH4ValueTextBox.Size = new System.Drawing.Size(138, 20);
+            this.CH4ValueTextBox.TabIndex = 3;
+            this.CH4ValueTextBox.Text = "50";
+            // 
+            // CH4Value
+            // 
+            this.CH4Value.AutoSize = true;
+            this.CH4Value.Location = new System.Drawing.Point(6, 56);
+            this.CH4Value.Name = "CH4Value";
+            this.CH4Value.Size = new System.Drawing.Size(28, 13);
+            this.CH4Value.TabIndex = 2;
+            this.CH4Value.Text = "CH4";
+            // 
+            // H20ValueTextBox
+            // 
+            this.H20ValueTextBox.Location = new System.Drawing.Point(41, 28);
+            this.H20ValueTextBox.Name = "H20ValueTextBox";
+            this.H20ValueTextBox.Size = new System.Drawing.Size(138, 20);
+            this.H20ValueTextBox.TabIndex = 1;
+            this.H20ValueTextBox.Text = "50";
+            // 
+            // H2OValue
+            // 
+            this.H2OValue.AutoSize = true;
+            this.H2OValue.Location = new System.Drawing.Point(6, 31);
+            this.H2OValue.Name = "H2OValue";
+            this.H2OValue.Size = new System.Drawing.Size(29, 13);
+            this.H2OValue.TabIndex = 0;
+            this.H2OValue.Text = "H2O";
             // 
             // groupBox1
             // 
@@ -138,21 +207,18 @@
             this.groupBox1.Controls.Add(this.CH4SeuilHautLabel);
             this.groupBox1.Controls.Add(this.H2OSeuilHautTextBox);
             this.groupBox1.Controls.Add(this.H2OSeuilHautLabel);
-            this.groupBox1.Location = new System.Drawing.Point(13, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(10, 9);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(251, 170);
+            this.groupBox1.Size = new System.Drawing.Size(209, 138);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seuils capteurs haut";
             // 
             // setSeuilHautButton
             // 
-            this.setSeuilHautButton.Location = new System.Drawing.Point(119, 128);
-            this.setSeuilHautButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.setSeuilHautButton.Location = new System.Drawing.Point(89, 104);
             this.setSeuilHautButton.Name = "setSeuilHautButton";
-            this.setSeuilHautButton.Size = new System.Drawing.Size(120, 33);
+            this.setSeuilHautButton.Size = new System.Drawing.Size(90, 27);
             this.setSeuilHautButton.TabIndex = 6;
             this.setSeuilHautButton.Text = "Set seuils haut";
             this.setSeuilHautButton.UseVisualStyleBackColor = true;
@@ -160,70 +226,62 @@
             // 
             // COSeuilHautTextBox
             // 
-            this.COSeuilHautTextBox.Location = new System.Drawing.Point(55, 96);
-            this.COSeuilHautTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.COSeuilHautTextBox.Location = new System.Drawing.Point(41, 78);
             this.COSeuilHautTextBox.Name = "COSeuilHautTextBox";
-            this.COSeuilHautTextBox.Size = new System.Drawing.Size(183, 22);
+            this.COSeuilHautTextBox.Size = new System.Drawing.Size(138, 20);
             this.COSeuilHautTextBox.TabIndex = 5;
             this.COSeuilHautTextBox.Text = "330";
             // 
             // COSeuilHautLabel
             // 
             this.COSeuilHautLabel.AutoSize = true;
-            this.COSeuilHautLabel.Location = new System.Drawing.Point(8, 100);
-            this.COSeuilHautLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.COSeuilHautLabel.Location = new System.Drawing.Point(6, 81);
             this.COSeuilHautLabel.Name = "COSeuilHautLabel";
-            this.COSeuilHautLabel.Size = new System.Drawing.Size(28, 17);
+            this.COSeuilHautLabel.Size = new System.Drawing.Size(22, 13);
             this.COSeuilHautLabel.TabIndex = 4;
             this.COSeuilHautLabel.Text = "CO";
             // 
             // CH4SeuilHautTextBox
             // 
-            this.CH4SeuilHautTextBox.Location = new System.Drawing.Point(55, 65);
-            this.CH4SeuilHautTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CH4SeuilHautTextBox.Location = new System.Drawing.Point(41, 53);
             this.CH4SeuilHautTextBox.Name = "CH4SeuilHautTextBox";
-            this.CH4SeuilHautTextBox.Size = new System.Drawing.Size(183, 22);
+            this.CH4SeuilHautTextBox.Size = new System.Drawing.Size(138, 20);
             this.CH4SeuilHautTextBox.TabIndex = 3;
             this.CH4SeuilHautTextBox.Text = "300";
             // 
             // CH4SeuilHautLabel
             // 
             this.CH4SeuilHautLabel.AutoSize = true;
-            this.CH4SeuilHautLabel.Location = new System.Drawing.Point(8, 69);
-            this.CH4SeuilHautLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CH4SeuilHautLabel.Location = new System.Drawing.Point(6, 56);
             this.CH4SeuilHautLabel.Name = "CH4SeuilHautLabel";
-            this.CH4SeuilHautLabel.Size = new System.Drawing.Size(35, 17);
+            this.CH4SeuilHautLabel.Size = new System.Drawing.Size(28, 13);
             this.CH4SeuilHautLabel.TabIndex = 2;
             this.CH4SeuilHautLabel.Text = "CH4";
             // 
             // H2OSeuilHautTextBox
             // 
-            this.H2OSeuilHautTextBox.Location = new System.Drawing.Point(55, 34);
-            this.H2OSeuilHautTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.H2OSeuilHautTextBox.Location = new System.Drawing.Point(41, 28);
             this.H2OSeuilHautTextBox.Name = "H2OSeuilHautTextBox";
-            this.H2OSeuilHautTextBox.Size = new System.Drawing.Size(183, 22);
+            this.H2OSeuilHautTextBox.Size = new System.Drawing.Size(138, 20);
             this.H2OSeuilHautTextBox.TabIndex = 1;
             this.H2OSeuilHautTextBox.Text = "200";
             // 
             // H2OSeuilHautLabel
             // 
             this.H2OSeuilHautLabel.AutoSize = true;
-            this.H2OSeuilHautLabel.Location = new System.Drawing.Point(8, 38);
-            this.H2OSeuilHautLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.H2OSeuilHautLabel.Location = new System.Drawing.Point(6, 31);
             this.H2OSeuilHautLabel.Name = "H2OSeuilHautLabel";
-            this.H2OSeuilHautLabel.Size = new System.Drawing.Size(37, 17);
+            this.H2OSeuilHautLabel.Size = new System.Drawing.Size(29, 13);
             this.H2OSeuilHautLabel.TabIndex = 0;
             this.H2OSeuilHautLabel.Text = "H2O";
-
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1651, 658);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1238, 535);
+            this.Controls.Add(this.ControlPanel);
             this.Controls.Add(this.designPanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -232,7 +290,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pumpPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.espaceTupleBindingSource)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.ControlPanel.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -243,7 +303,7 @@
 
         private System.Windows.Forms.Panel designPanel;
         private System.Windows.Forms.PictureBox pumpPictureBox;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel ControlPanel;
         private System.Windows.Forms.TextBox waterLevelTextBox;
         private System.Windows.Forms.TextBox chTextBox;
         private System.Windows.Forms.TextBox coTextBox;
@@ -257,6 +317,13 @@
         private System.Windows.Forms.Button setSeuilHautButton;
         private System.Windows.Forms.TextBox COSeuilHautTextBox;
         private System.Windows.Forms.Label COSeuilHautLabel;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox COValueTextBox;
+        private System.Windows.Forms.Label COValue;
+        private System.Windows.Forms.TextBox CH4ValueTextBox;
+        private System.Windows.Forms.Label CH4Value;
+        private System.Windows.Forms.TextBox H20ValueTextBox;
+        private System.Windows.Forms.Label H2OValue;
     }
 }
 

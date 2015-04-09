@@ -71,6 +71,11 @@ namespace DrainageMine
 
         }
 
+        private void ControlPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
 
 
 
