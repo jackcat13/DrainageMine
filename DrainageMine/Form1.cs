@@ -17,7 +17,6 @@ namespace DrainageMine
     {
 
         private Linda linda;
-        private Boolean exit = false;
         private Thread capteurH20;
         private Thread capteurC0;
         private Thread capteurCH4;
@@ -25,8 +24,10 @@ namespace DrainageMine
         private Thread pompe;
         private Thread ventilateur;
         private Thread h2O_seuil_haut;
+        private Thread surveillance_gaz_haut;
         private Thread commandePompeVentilo;
         private Thread detection_gaz_bas;
+        private Thread h2O_seuil_bas;
 
         public Form1()
         {
@@ -35,6 +36,28 @@ namespace DrainageMine
             capteurH20 = new Thread(agentCapteurH20);
             capteurC0 = new Thread(agentCapteurC0);
             capteurCH4 = new Thread(agentCapteurCH4);
+
+            Pompe p = new Pompe(linda);
+            pompe = new Thread(p.agentPompe);
+
+            Ventilateur v = new Ventilateur(linda);
+            ventilateur = new Thread(v.agentVentilateur);
+
+            H2O_seuil_haut h = new H2O_seuil_haut(linda);
+            h2O_seuil_haut = new Thread(h.agent_H2O_seuil_haut);
+
+            Detection_gaz_bas d = new Detection_gaz_bas(linda);
+            detection_gaz_bas = new Thread(d.agent_detection_gaz_bas);
+
+
+            CommandePompeVentilo cpv = new CommandePompeVentilo(linda);
+            commandePompeVentilo = new Thread(cpv.agentCommandePompeVentilo);
+
+            Surveillance_gaz_haut sgh = new Surveillance_gaz_haut(linda);
+            surveillance_gaz_haut = new Thread(sgh.agentSurveillance_gaz_haut);
+
+            H2O_seuil_bas hb = new H2O_seuil_bas(linda);
+            h2O_seuil_bas = new Thread(hb.agent_H2O_seuil_bas);
             
 
             try{
@@ -122,9 +145,10 @@ namespace DrainageMine
             {
                 ventilateur.Abort();
             }
-            if(h2O_seuil_haut.IsAlive)
+            if (h2O_seuil_haut.IsAlive)
             {
                 h2O_seuil_haut.Abort();
+            }
             if (commandePompeVentilo.IsAlive)
             {
                 commandePompeVentilo.Abort();
@@ -133,7 +157,16 @@ namespace DrainageMine
             {
                 detection_gaz_bas.Abort();
             }
-        }
+
+            if (surveillance_gaz_haut.IsAlive)
+            {
+                surveillance_gaz_haut.Abort();
+            }
+            if (h2O_seuil_bas.IsAlive)
+            {
+                h2O_seuil_bas.Abort();
+            }
+        
         }
 
         private void agentCapteurH20()
@@ -187,25 +220,22 @@ namespace DrainageMine
             capteurC0.Start();
             capteurCH4.Start();
 
-            Pompe p = new Pompe(linda);
-            pompe = new Thread(p.agentPompe);
+           
             pompe.Start();
-            Ventilateur v = new Ventilateur(linda);
-            ventilateur = new Thread(v.agentVentilateur);
+
             ventilateur.Start();
 
-            H2O_seuil_haut h = new H2O_seuil_haut(linda);
-            h2O_seuil_haut = new Thread(h.agent_H2O_seuil_haut);
+         
             h2O_seuil_haut.Start();
 
-            Detection_gaz_bas d = new Detection_gaz_bas(linda);
-            detection_gaz_bas = new Thread(d.agent_detection_gaz_bas);
+
             detection_gaz_bas.Start();
 
-
-            CommandePompeVentilo cpv = new CommandePompeVentilo(linda);
-            commandePompeVentilo = new Thread(cpv.agentCommandePompeVentilo);
             commandePompeVentilo.Start();
+
+            surveillance_gaz_haut.Start();
+
+            h2O_seuil_bas.Start();
         }
 
     }

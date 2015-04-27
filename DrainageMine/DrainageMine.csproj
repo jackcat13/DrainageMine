@@ -69,8 +69,10 @@
   <ItemGroup>
     <Compile Include="Controller\Detection_gaz_bas.cs" />
     <Compile Include="Controller\CommandePompeVentilo.cs" />
+    <Compile Include="Controller\H2O_seuil_bas.cs" />
     <Compile Include="Controller\H2O_seuil_haut.cs" />
     <Compile Include="Controller\Pompe.cs" />
+    <Compile Include="Controller\Surveillance_gaz_haut.cs" />
     <Compile Include="Controller\Ventilateur.cs" />
     <Compile Include="Model\DAO.cs" />
     <Compile Include="Form1.cs">

@@ -11,14 +11,12 @@ namespace DrainageMine.Controller
     {
 
         private Linda linda;
-        private int seuilCH4;
-        private int seuilCO;
+
 
         public CommandePompeVentilo(Linda linda)
         {
             this.linda = linda;
-            this.seuilCH4 = Convert.ToInt32(this.linda.lindaRead("value_Seuil_CH4_Haut").Arguments.Split(',')[1]);
-            this.seuilCO = Convert.ToInt32(this.linda.lindaRead("value_Seuil_CO_Haut").Arguments.Split(',')[1]);
+           
         }
 
         public void agentCommandePompeVentilo()
@@ -26,6 +24,8 @@ namespace DrainageMine.Controller
             while (true)
             {
                 linda.lindaIn("H2O_haut_detecte");
+                int seuilCH4 = Convert.ToInt32(this.linda.lindaRead("value_Seuil_CH4_Haut").Arguments.Split(',')[1]);
+                int seuilCO = Convert.ToInt32(this.linda.lindaRead("value_Seuil_CO_Haut").Arguments.Split(',')[1]);
                 int niveauCH4 = Convert.ToInt32(linda.lindaRead("niveau_CH4").Arguments.Split(',')[1]);
                 int niveauCO = Convert.ToInt32(linda.lindaRead("niveau_CO").Arguments.Split(',')[1]);
                 if ((niveauCH4 < seuilCH4) && (niveauCO < seuilCO))
