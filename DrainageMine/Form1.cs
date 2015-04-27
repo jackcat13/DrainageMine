@@ -20,14 +20,16 @@ namespace DrainageMine
         private Thread capteurH20;
         private Thread capteurC0;
         private Thread capteurCH4;
-
-        private Thread pompe;
-        private Thread ventilateur;
+        private Pompe pompe;
+        private Ventilateur ventilateur;
+        private Thread pompeThread;
+        private Thread ventilateurThread;
         private Thread h2O_seuil_haut;
         private Thread surveillance_gaz_haut;
         private Thread commandePompeVentilo;
         private Thread detection_gaz_bas;
         private Thread h2O_seuil_bas;
+        delegate void SetTextCallback(string text);
 
         public Form1()
         {
@@ -37,11 +39,11 @@ namespace DrainageMine
             capteurC0 = new Thread(agentCapteurC0);
             capteurCH4 = new Thread(agentCapteurCH4);
 
-            Pompe p = new Pompe(linda);
-            pompe = new Thread(p.agentPompe);
+            pompe = new Pompe(linda);
+            pompeThread = new Thread(new ThreadStart(pompe.agentPompe));
 
-            Ventilateur v = new Ventilateur(linda);
-            ventilateur = new Thread(v.agentVentilateur);
+            ventilateur = new Ventilateur(linda);
+            ventilateurThread = new Thread(new ThreadStart (ventilateur.agentVentilateur));
 
             H2O_seuil_haut h = new H2O_seuil_haut(linda);
             h2O_seuil_haut = new Thread(h.agent_H2O_seuil_haut);
@@ -137,13 +139,13 @@ namespace DrainageMine
             if (capteurCH4.IsAlive) {
                  capteurCH4.Abort();
              }
-            if (pompe.IsAlive)
+            if (pompeThread.IsAlive)
             {
-                pompe.Abort();
+                pompeThread.Abort();
             }
-            if (ventilateur.IsAlive)
+            if (ventilateurThread.IsAlive)
             {
-                ventilateur.Abort();
+                ventilateurThread.Abort();
             }
             if (h2O_seuil_haut.IsAlive)
             {
@@ -175,7 +177,9 @@ namespace DrainageMine
             {
                 try
                 {
-                    linda.lindaAdd("niveau_H2O", new LindaTuple("niveau_H2O," + H2OValueTextBox.Text));
+                    linda.lindaAdd("niveau_H2O", new LindaTuple("niveau_H2O," + (string.IsNullOrWhiteSpace(H2OValueTextBox.Text)? "0" : H2OValueTextBox.Text)));
+                    Console.WriteLine(H2OValueTextBox.Text);
+                    Thread.Sleep(1000);
                 }
                 catch (Exception e)
                 {
@@ -190,7 +194,9 @@ namespace DrainageMine
             {
                 try
                 {
-                    linda.lindaAdd("niveau_CO", new LindaTuple("niveau_CO," + COValueTextBox.Text));
+                    linda.lindaAdd("niveau_CO", new LindaTuple("niveau_CO," + (string.IsNullOrWhiteSpace(COValueTextBox.Text) ? "0" : COValueTextBox.Text)));
+                    Thread.Sleep(1000);
+
                 }
                 catch (Exception e)
                 {
@@ -205,7 +211,9 @@ namespace DrainageMine
             {
                 try
                 {
-                    linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + CH4ValueTextBox.Text));
+                    linda.lindaAdd("niveau_CH4", new LindaTuple("niveau_CH4," + (string.IsNullOrWhiteSpace(CH4ValueTextBox.Text) ? "0" : CH4ValueTextBox.Text)));
+                    Thread.Sleep(1000);
+
                 }
                 catch (Exception e)
                 {
@@ -216,14 +224,18 @@ namespace DrainageMine
 
         private void startButton_Click(object sender, EventArgs e)
         {
+
+            pompe.etatPompeChanged += _etatPompeChanged;
+            ventilateur.etatVentiloChanged += _etatVentiloChanged;
+
             capteurH20.Start();
             capteurC0.Start();
             capteurCH4.Start();
 
            
-            pompe.Start();
+            pompeThread.Start();
 
-            ventilateur.Start();
+            ventilateurThread.Start();
 
          
             h2O_seuil_haut.Start();
@@ -236,7 +248,54 @@ namespace DrainageMine
             surveillance_gaz_haut.Start();
 
             h2O_seuil_bas.Start();
+
+            linda.lindaAdd("detection_H2O_haut",new LindaTuple("detection_H2O_haut"));
+            setlblPompeText("desactive");
+            setlblVentilateurText("desactive");
+
+
+           
         }
+
+        private void _etatPompeChanged(object sender, EtatPompeChangedEventArgs e)
+        {
+            if (this.lblPompe.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(setlblPompeText);
+                this.Invoke(d, new object[] { e.NewValue });
+            }
+            else
+            {
+                this.setlblPompeText(e.NewValue);
+            }
+        }
+
+        private void setlblPompeText(String s)
+        {
+            lblPompe.Text = s;
+
+        }
+
+        private void _etatVentiloChanged(object sender, EtatVentiloChangedEventArgs e)
+        {
+            if (this.lblVentilateur.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(setlblVentilateurText);
+                this.Invoke(d, new object[] { e.NewValue });
+            }
+            else
+            {
+                this.setlblVentilateurText(e.NewValue);
+            }
+        }
+
+        private void setlblVentilateurText(String s)
+        {
+            lblVentilateur.Text = s;
+
+        }
+
+
 
     }
 }

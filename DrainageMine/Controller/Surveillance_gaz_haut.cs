@@ -34,7 +34,9 @@ namespace DrainageMine.Controller
 
                 if ((niveau_ch4 >= seuil_ch4) || (niveau_co >= seuil_co))
                 {
+                    linda.lindaOut(new LindaTuple("desactivation_pompe"));
                     linda.lindaOut(new LindaTuple("activation_ventilateur"));
+                    linda.lindaOut(new LindaTuple("detection_gaz_bas"));
                     linda.lindaIn("surveillance_gaz_haut");
                 }
             }

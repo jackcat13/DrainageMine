@@ -21,7 +21,7 @@ namespace DrainageMine.Controller
             {
                 linda.lindaRead("detection_H2O_haut");
                 var niveau = Convert.ToInt32(linda.lindaRead("niveau_H2O").Arguments.Split(',')[1]);
-                var seuil = Convert.ToInt32(linda.lindaRead("value_Seuil_H2O_Bas").Arguments.Split(',')[1]);
+                var seuil = Convert.ToInt32(linda.lindaRead("value_Seuil_H2O_Haut").Arguments.Split(',')[1]);
                 if (niveau >= seuil)
                 {
                     linda.lindaOut(new LindaTuple("H2O_haut_detecte"));

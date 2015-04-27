@@ -32,7 +32,6 @@ namespace DrainageMine.Model
         public void addTuple(LindaTuple tuple){
             try
             {
-                Console.WriteLine("Arguments : " + tuple.Arguments);
                 var arguments = tuple.Arguments;
                 var document = new BsonDocument();
                 document["Arguments"] = arguments;

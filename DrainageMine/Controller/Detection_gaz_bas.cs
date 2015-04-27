@@ -17,18 +17,22 @@ namespace DrainageMine.Controller
          public void agent_detection_gaz_bas(){
              while (true)
              {
-                 linda.lindaIn("detection_gaz_bas");
+                 linda.lindaRead("detection_gaz_bas");
 
                  var niveau_ch4 = Convert.ToInt32(linda.lindaRead("niveau_CH4").Arguments.Split(',')[1]);
                  var niveau_co = Convert.ToInt32(linda.lindaRead("niveau_CO").Arguments.Split(',')[1]);
 
-                 var seuil_ch4 = Convert.ToInt32(linda.lindaRead("value_Seuil_CH4_Haut").Arguments.Split(',')[1]);
-                 var seuil_co = Convert.ToInt32(linda.lindaRead("value_Seuil_CO_Haut").Arguments.Split(',')[1]);
+                 var seuil_ch4 = Convert.ToInt32(linda.lindaRead("value_Seuil_CH4_Bas").Arguments.Split(',')[1]);
+                 var seuil_co = Convert.ToInt32(linda.lindaRead("value_Seuil_CO_Bas").Arguments.Split(',')[1]);
 
                  if ((niveau_ch4 < seuil_ch4) && (niveau_co < seuil_co))
                  {
+                     linda.lindaOut(new LindaTuple("desactivation_ventilateur"));
                      linda.lindaOut(new LindaTuple("activation_pompe"));
                      linda.lindaOut(new LindaTuple("detection_H2O_bas"));
+                     linda.lindaIn("detection_gaz_bas");
+
+
                  }
              }
          
