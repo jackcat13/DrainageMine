@@ -38,6 +38,8 @@ namespace DrainageMine.Controller
                     linda.lindaOut(new LindaTuple("activation_ventilateur"));
                     linda.lindaOut(new LindaTuple("detection_gaz_bas"));
                     linda.lindaIn("surveillance_gaz_haut");
+                    linda.lindaIn("detection_H2O_bas");
+
                 }
             }
         }

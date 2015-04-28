@@ -31,8 +31,8 @@ namespace DrainageMine.Controller
                 if ((niveauCH4 < seuilCH4) && (niveauCO < seuilCO))
                 {
                     linda.lindaOut(new LindaTuple("activation_pompe"));
-                    linda.lindaOut(new LindaTuple("detection_H2O_bas"));
                     linda.lindaOut(new LindaTuple("surveillance_gaz_haut"));
+                    linda.lindaOut(new LindaTuple("detection_H2O_bas"));
                 }
                 else
                 {

@@ -51,12 +51,12 @@ namespace DrainageMine.Controller
         {
             while (true)
             {
-                if (linda.lindaReadP("activation_ventilateur")!=null)
+                if (EtatVentilateur == "desactive")
                 {
                     linda.lindaIn("activation_ventilateur");
                     EtatVentilateur = "active";
                 }
-                if (linda.lindaReadP("desactivation_ventilateur") != null)
+                if (EtatVentilateur == "active")
                 {
                     linda.lindaIn("desactivation_ventilateur");
                     EtatVentilateur = "desactive";

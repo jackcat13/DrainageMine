@@ -46,12 +46,12 @@ namespace DrainageMine.Controller
         {
             while (true)
             {
-                if (linda.lindaReadP("activation_pompe")!=null)
+                if (this.etatPompe == "desactive")
                 {
                     linda.lindaIn("activation_pompe");
                     EtatPompe = "active";
                 }
-                if (linda.lindaReadP("desactivation_pompe") != null)
+                if (this.etatPompe == "active")
                 {
                     linda.lindaIn("desactivation_pompe");
                     EtatPompe = "desactive";

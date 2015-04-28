@@ -232,7 +232,6 @@ namespace DrainageMine
             capteurC0.Start();
             capteurCH4.Start();
 
-           
             pompeThread.Start();
 
             ventilateurThread.Start();

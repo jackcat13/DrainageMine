@@ -20,17 +20,19 @@ namespace DrainageMine.Controller
         public void lindaOut( LindaTuple tuple )
         {
             dao.addTuple(tuple);
+            System.Threading.Thread.Sleep(500);
         }
 
         public void lindaAdd( string filter, LindaTuple tuple )
         {
 
             dao.updateTuple(filter, tuple.Arguments);
+            System.Threading.Thread.Sleep(500);
         }
 
 
         public LindaTuple lindaIn(string filter){
-            while (dao.getTuple(filter) == null) { System.Threading.Thread.Sleep(1000); }
+            while (dao.getTuple(filter) == null) { System.Threading.Thread.Sleep(500); }
             LindaTuple tuple = dao.getTuple(filter);
 
             dao.deleteTuple(tuple);
@@ -40,7 +42,7 @@ namespace DrainageMine.Controller
         public LindaTuple lindaRead(string filter)
         {
 
-            while (dao.getTuple(filter) == null) {System.Threading.Thread.Sleep(1000);}
+            while (dao.getTuple(filter) == null) {System.Threading.Thread.Sleep(500);}
             LindaTuple tuple = dao.getTuple(filter);
             return tuple;
         }
@@ -50,13 +52,13 @@ namespace DrainageMine.Controller
             LindaTuple tuple = dao.getTuple(filter);
 
             if(tuple!=null)dao.deleteTuple(tuple);
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(500);
             return tuple;
         }
 
         public LindaTuple lindaReadP(string filter)
         {
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(500);
             return dao.getTuple(filter);
         }
     }
