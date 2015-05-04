@@ -23,7 +23,13 @@ namespace DrainageMine.Controller
                 var seuil = Convert.ToInt32(linda.lindaRead("value_Seuil_H2O_Bas").Arguments.Split(',')[1]);
                 if (niveau < seuil)
                 {
+                    
                     linda.lindaOut(new LindaTuple("desactivation_pompe"));
+                    if (linda.lindaReadP("detection_gaz_bas") != null)
+                    {
+                        linda.lindaIn("detection_gaz_bas");
+                        linda.lindaOut(new LindaTuple("desactivation_ventilateur"));
+                    }
                     linda.lindaOut(new LindaTuple("detection_H2O_haut"));
                     linda.lindaIn("surveillance_gaz_haut");
                     linda.lindaIn("detection_H2O_bas");
